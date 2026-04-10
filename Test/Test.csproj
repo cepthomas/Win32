@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFrameworks>net8.0-windows</TargetFrameworks>
+        <OutputType>Exe</OutputType>
+        <UseWindowsForms>true</UseWindowsForms>
+        <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+        <Description>Win32 tester</Description>
+        <Copyright>MIT License</Copyright>
+        <RootNamespace>Ephemera.Win32.Test</RootNamespace>
+        <AssemblyName>Ephemera.Win32.Test</AssemblyName>
+        <OutputPath>bin\</OutputPath>
+        <!-- <DefineConstants>DEBUG;TRACE</DefineConstants> -->
+        <WarningLevel>4</WarningLevel>
+        <NoWarn>CS1591;CS0162</NoWarn> 
+        <GenerateDocumentationFile>false</GenerateDocumentationFile>
+        <Nullable>enable</Nullable>
+        <SatelliteResourceLanguages>none</SatelliteResourceLanguages>
+        <Platforms>AnyCPU;x64</Platforms> <!-- en none -->
+    </PropertyGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\Win32.csproj" />
+    </ItemGroup>
+
+</Project>

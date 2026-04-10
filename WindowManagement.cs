@@ -313,7 +313,7 @@ namespace Ephemera.Win32
         /// <param name="hwnd">handle to the window</param>
         /// <param name="lpString">StringBuilder to receive the result</param>
         /// <param name="cch">Max number of characters to copy to the buffer, including the null character. If the text exceeds this limit, it is truncated</param>
-        [DllImport("user32.dll", EntryPoint = "GetWindowTextA", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Unicode)]
+        [DllImport("user32.dll", EntryPoint = "GetWindowTextA", SetLastError = true, ExactSpelling = true, CharSet = CharSet.Ansi)]
         static extern int GetWindowText(IntPtr hwnd, StringBuilder lpString, int cch);
 
         [DllImport("user32.dll", EntryPoint = "GetWindowTextLengthA", SetLastError = true, ExactSpelling = true)]

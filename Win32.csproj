@@ -29,4 +29,10 @@
       <NoWarn>CS1591;SYSLIB1054;CA1822</NoWarn>
     </PropertyGroup>
 
+    <ItemGroup>
+      <Compile Remove="Test\**" />
+      <EmbeddedResource Remove="Test\**" />
+      <None Remove="Test\**" />
+    </ItemGroup>
+
 </Project>
