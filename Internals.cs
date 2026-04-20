@@ -104,13 +104,18 @@ namespace Ephemera.Win32
         public const uint SEE_MASK_NOQUERYCLASSSTORE = 0x01000000;
         public const uint SEE_MASK_WAITFORINPUTIDLE = 0x02000000;
         public const uint SEE_MASK_FLAG_LOG_USAGE = 0x04000000;
+
+        ///// Hook type. https://www.pinvoke.net/default.aspx/Enums/HookType.html
+        // Global hooks are not supported in the.NET Framework except for WH_KEYBOARD_LL and WH_MOUSE_LL.
+        public const int WH_KEYBOARD_LL = 13;
+        public const int WH_MOUSE_LL = 14;
         #endregion
 
         #region Fields
         static readonly List<int> _hotKeyIds = [];
         #endregion
 
-        #region API
+        #region API - User calls these
         /// <summary>
         /// Generic message sender.
         /// </summary>
@@ -245,7 +250,7 @@ namespace Ephemera.Win32
         }
         #endregion
 
-        #region Native Methods
+        #region Native interop methods
 
         #region Types
         /// <summary>For ShellExecuteEx().</summary>
@@ -285,6 +290,29 @@ namespace Ephemera.Win32
             public IntPtr hIcon;
             public IntPtr hProcess;
         }
+
+        /// <summary>For CallNextHookEx().</summary>
+        [Flags]
+        public enum KBDLLHOOKSTRUCTFlags : uint
+        {
+            LLKHF_EXTENDED = 0x01,
+            LLKHF_INJECTED = 0x10,
+            LLKHF_ALTDOWN = 0x20,
+            LLKHF_UP = 0x80,
+        }
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct KBDLLHOOKSTRUCT
+        {
+            public uint vkCode;    // A virtual-key code in the range 1 to 254.
+            public uint scanCode;  // A hardware scan code for the key.
+            public KBDLLHOOKSTRUCTFlags flags;
+            public uint time;
+            public UIntPtr dwExtraInfo;
+        }
+
+        /// <summary>Defines the callback for the hook. Apparently you can have multiple typed overloads.</summary>
+        public delegate int HookProc(int code, int wParam, ref KBDLLHOOKSTRUCT lParam);
         #endregion
 
         #region shell32.dll
@@ -332,6 +360,15 @@ namespace Ephemera.Win32
 
         [DllImport("user32.dll")]
         static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
+        
+        [DllImport("user32.dll")]
+        public static extern int CallNextHookEx(IntPtr idHook, int nCode, int wParam, ref KBDLLHOOKSTRUCT lParam);
+
+        [DllImport("user32.dll")]
+        public static extern IntPtr SetWindowsHookEx(HookType hookType, HookProc lpfn, IntPtr hMod, uint dwThreadId);
+
+        [DllImport("user32.dll")]
+        public static extern bool UnhookWindowsHookEx(IntPtr hInstance);
         #endregion
 
         #endregion
