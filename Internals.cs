@@ -115,7 +115,7 @@ namespace Ephemera.Win32
         static readonly List<int> _hotKeyIds = [];
         #endregion
 
-        #region API - User calls these
+        #region User Helpers
         /// <summary>
         /// Generic message sender.
         /// </summary>
@@ -316,6 +316,11 @@ namespace Ephemera.Win32
         #endregion
 
         #region shell32.dll
+        [DllImport("shell32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        public static extern IntPtr GetModuleHandle(string lpModuleName);
+        #endregion
+
+        #region shell32.dll
         /// <summary>Performs an operation on a specified file.
         /// Args: https://learn.microsoft.com/en-us/windows/win32/api/shellapi/ns-shellapi-shellexecuteinfoa.
         /// </summary>
@@ -365,7 +370,7 @@ namespace Ephemera.Win32
         public static extern int CallNextHookEx(IntPtr idHook, int nCode, int wParam, ref KBDLLHOOKSTRUCT lParam);
 
         [DllImport("user32.dll")]
-        public static extern IntPtr SetWindowsHookEx(HookType hookType, HookProc lpfn, IntPtr hMod, uint dwThreadId);
+        public static extern IntPtr SetWindowsHookEx(int hookType, HookProc lpfn, IntPtr hMod, uint dwThreadId);
 
         [DllImport("user32.dll")]
         public static extern bool UnhookWindowsHookEx(IntPtr hInstance);

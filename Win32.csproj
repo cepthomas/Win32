@@ -22,11 +22,11 @@
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      <NoWarn>CS1591;SYSLIB1054;CA1822</NoWarn>
+      <NoWarn>CS1591;SYSLIB1054;CA1822;CA1401</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      <NoWarn>CS1591;SYSLIB1054;CA1822</NoWarn>
+      <NoWarn>CS1591;SYSLIB1054;CA1822;CA1401</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
