@@ -315,8 +315,8 @@ namespace Ephemera.Win32
         public delegate int HookProc(int code, int wParam, ref KBDLLHOOKSTRUCT lParam);
         #endregion
 
-        #region shell32.dll
-        [DllImport("shell32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
+        #region kernel32.dll
+        [DllImport("kernel32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         public static extern IntPtr GetModuleHandle(string lpModuleName);
         #endregion
 
