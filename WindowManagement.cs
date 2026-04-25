@@ -71,6 +71,32 @@ namespace Ephemera.Win32
         }
 
         /// <summary>
+        /// Get all top level window handles.
+        /// </summary>
+        /// <param name="includeInvisible"></param>
+        /// <returns></returns>
+        public static List<IntPtr> GetTopWindows(bool includeInvisible)
+        {
+            // Enumerate all windows. https://learn.microsoft.com/en-us/windows/win32/api/winuser/nf-winuser-enumwindows
+            List<AppWindowInfo> winfos = [];
+
+            List<IntPtr> handles = [];
+            bool addWindowHandle(IntPtr hWnd, IntPtr param) // callback
+            {
+                if (!includeInvisible && IsWindowVisible(hWnd))
+                {
+                    handles.Add(hWnd);
+                }
+                return true;
+            }
+            
+            IntPtr param = IntPtr.Zero;
+            EnumWindows(addWindowHandle, param);
+
+            return handles;
+        }
+
+        /// <summary>
         /// Get all pertinent/visible windows for the application. Ignores non-visible or non-titled (internal).
         /// Note that new explorers may be in the same process or separate ones. Depends on explorer user options.
         /// </summary>
