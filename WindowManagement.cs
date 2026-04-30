@@ -54,12 +54,11 @@ namespace Ephemera.Win32
 
         #region API
         /// <summary>
-        /// Get or set the fg.
+        /// Get the fg. As of Win11 no longer able to set it directly.
         /// </summary>
         public static IntPtr ForegroundWindow
         {
             get { return GetForegroundWindow(); }
-            set { SetForegroundWindow(value); }
         }
 
         /// <summary>
@@ -282,9 +281,6 @@ namespace Ephemera.Win32
         }
 
         [DllImport("user32.dll")]
-        static extern bool SetForegroundWindow(IntPtr hWnd);
-
-        [DllImport("user32.dll")]
         static extern IntPtr GetForegroundWindow();
 
         [DllImport("user32.dll")]
@@ -297,7 +293,7 @@ namespace Ephemera.Win32
         static extern bool IsZoomed(IntPtr hWnd);
 
         [DllImport("user32.dll", SetLastError = true)]
-        extern static bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
+        static extern bool SetWindowPos(IntPtr hWnd, IntPtr hWndInsertAfter, int X, int Y, int cx, int cy, int uFlags);
 
         [DllImport("user32.dll")]
         static extern bool BringWindowToTop(IntPtr hWnd);

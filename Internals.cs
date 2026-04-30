@@ -117,7 +117,8 @@ namespace Ephemera.Win32
 
         #region User Helpers
         /// <summary>
-        /// Generic message sender.
+        /// Generic message sender. Synchronous: waits for the window to process the message
+        /// Use PostMessage for asynchronous.
         /// </summary>
         /// <param name="handle"></param>
         /// <param name="msg"></param>
