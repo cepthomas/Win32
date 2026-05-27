@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFrameworks>net8.0-windows</TargetFrameworks>
         <OutputType>Exe</OutputType>
+        <Platforms>AnyCPU;x64</Platforms>
         <UseWindowsForms>true</UseWindowsForms>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Description>Win32 tester</Description>
@@ -16,7 +17,7 @@
         <GenerateDocumentationFile>false</GenerateDocumentationFile>
         <Nullable>enable</Nullable>
         <SatelliteResourceLanguages>none</SatelliteResourceLanguages>
-        <Platforms>AnyCPU;x64</Platforms> <!-- en none -->
+        <!-- en none -->
     </PropertyGroup>
 
     <ItemGroup>
