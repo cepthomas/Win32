@@ -3,7 +3,7 @@
     <PropertyGroup>
         <TargetFrameworks>net8.0-windows</TargetFrameworks>
         <OutputType>Exe</OutputType>
-        <Platforms>AnyCPU;x64</Platforms>
+        <Platforms>AnyCPU</Platforms>
         <UseWindowsForms>true</UseWindowsForms>
         <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
         <Description>Win32 tester</Description>

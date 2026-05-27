@@ -5,11 +5,12 @@
         <OutputPath>bin\</OutputPath>
         <TargetFramework>net8.0-windows</TargetFramework>
         <UseWindowsForms>true</UseWindowsForms>
-        <Platforms>AnyCPU;x64</Platforms>
+        <Platforms>AnyCPU</Platforms>
         <ImplicitUsings>disable</ImplicitUsings>
         <Nullable>enable</Nullable>
         <AssemblyName>Ephemera.Win32</AssemblyName>
         <RootNamespace>Ephemera.Win32</RootNamespace>
+        <NoWarn>CS1591;SYSLIB1054;CA1822;CA1401</NoWarn>
         <Deterministic>False</Deterministic>
         <Version>1.0.0</Version>
         <SatelliteResourceLanguages>none</SatelliteResourceLanguages>
@@ -19,14 +20,6 @@
         <!-- <ProduceReferenceAssembly>True</ProduceReferenceAssembly>
         <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
         <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute> -->
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-      <NoWarn>CS1591;SYSLIB1054;CA1822;CA1401</NoWarn>
-    </PropertyGroup>
-
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-      <NoWarn>CS1591;SYSLIB1054;CA1822;CA1401</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
